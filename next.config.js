@@ -4,10 +4,7 @@ const nextConfig = {
     tsconfigPath: './tsconfig.json',
   },
   reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    cacheComponents: false,
-  },
+  cacheComponents: false,
 };
 
 module.exports = nextConfig;

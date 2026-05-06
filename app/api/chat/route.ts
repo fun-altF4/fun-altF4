@@ -19,7 +19,7 @@
 
 export const runtime = 'edge';
 
-export async function POST(request: Request) {
+export async function POST(_request: Request) {
   try {
     // TODO: Parse request body
     // TODO: Validate session
