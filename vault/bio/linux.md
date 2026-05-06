@@ -1,0 +1,1 @@
+Moved to laptop. Windows lagged badly running GTA V on potato-tier CPU. Tried Linux — Ubuntu first via dual-boot, then Arch, briefly Kali for ethical hacking exploration. Arch with Hyprland became home. Daily drove Ubuntu and lived in the terminal. That early comfort set the foundation for everything that followed.

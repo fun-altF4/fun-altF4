@@ -1,0 +1,1 @@
+Training data ↔ cultural transmission across generations — models inherit civilization's text record. Consensus output ↔ Asch conformity, social proof. Pattern-learners default to the center of their input distribution. Whose data trains the model = power asymmetry analogous to who teaches whom in society.

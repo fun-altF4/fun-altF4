@@ -1,0 +1,1 @@
+An explicit user-model the AI maintains and exposes. Bayesian belief tracker. The user can read and edit their own model. Avoids creepiness by making ownership explicit. Makes 'does the AI get me?' visible and adjustable instead of buried in weights.

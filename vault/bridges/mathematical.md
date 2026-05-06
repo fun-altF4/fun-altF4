@@ -1,0 +1,1 @@
+Loss landscape ↔ free-energy principle (Friston) — brains and models both seek low-energy states. Information theory in training ↔ Shannon entropy / thermodynamics. Emergent capabilities at scale ↔ phase transitions in physics. Gradient descent ↔ hill-climbing optimization in nature. Gödel limits apply to any cognition about itself.

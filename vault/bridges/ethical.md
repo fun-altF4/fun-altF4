@@ -1,0 +1,1 @@
+Alignment ↔ moral development (Kohlberg). RLHF preference data ↔ cultural moral training — ethics absorbed not derived. Reward hacking ↔ Goodhart's Law in human institutions. Specification gaming ↔ legal loopholes. Trolley problems became operational engineering specs.

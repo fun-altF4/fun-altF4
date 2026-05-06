@@ -1,0 +1,1 @@
+At Dial Phone: owns the technical roadmap end-to-end. Leads team. Architectural and hiring decisions. Accountable for what ships. SEO, content strategy, client-facing demos, scoping. Translates business requirements into shipped product.

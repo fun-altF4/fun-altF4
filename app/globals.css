@@ -1,0 +1,148 @@
+@import url('https://rsms.me/inter/inter.css');
+
+@layer base {
+  :root {
+    /* Core palette — time-of-day aware CSS variables */
+    --color-background: 0 0% 0%;
+    --color-foreground: 0 0% 100%;
+    --color-primary: 294 100% 64%; /* #4F7CFF */
+    --color-primary-dark: 269 100% 65%; /* #A66CFF */
+    --color-secondary: 20 100% 56%; /* #FFB347 */
+    --color-secondary-dark: 4 100% 61%; /* #FF6E5C */
+    --color-accent: 344 100% 60%; /* #FF4D6D */
+
+    --color-text-primary: 0 0% 100%;
+    --color-text-secondary: 220 9% 57%;
+    --color-text-tertiary: 220 9% 42%;
+    --color-border: 0 0% 100% / 10%;
+
+    /* Time-of-day palette shifts */
+    --time-of-day: 'day';
+    --palette-warmth: 1;
+  }
+
+  /* Morning: warmer tones */
+  [data-time-of-day='morning'] {
+    --palette-warmth: 1.1;
+    --color-secondary: 25 100% 60%;
+    --color-secondary-dark: 8 100% 64%;
+  }
+
+  /* Evening: cooler, deeper */
+  [data-time-of-day='evening'] {
+    --palette-warmth: 0.9;
+    --color-primary: 294 100% 58%;
+    --color-primary-dark: 269 100% 62%;
+  }
+
+  /* Night: very deep, cyan-tinted */
+  [data-time-of-day='night'] {
+    --palette-warmth: 0.8;
+    --color-primary: 294 100% 52%;
+    --color-primary-dark: 269 100% 58%;
+    --color-secondary: 15 100% 48%;
+    --color-secondary-dark: 355 100% 56%;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    background: hsl(var(--color-background));
+    color: hsl(var(--color-text-primary));
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont,
+      'Segoe UI', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: hsl(var(--color-background));
+    color: hsl(var(--color-text-primary));
+    overflow: hidden;
+  }
+
+  /* Dim point pulse animation (Tier 1) */
+  @keyframes pulse-dim {
+    0%, 100% {
+      opacity: 0.3;
+      box-shadow: 0 0 20px 0 hsl(var(--color-primary) / 0.3);
+    }
+    50% {
+      opacity: 0.8;
+      box-shadow: 0 0 80px 0 hsl(var(--color-primary) / 0.8);
+    }
+  }
+
+  /* Fade in easing */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Smooth text underline focus */
+  input:focus {
+    outline: none;
+  }
+
+  input::placeholder {
+    color: hsl(var(--color-text-tertiary));
+  }
+
+  /* Prevent zoom on iOS */
+  input[type='text'],
+  input[type='email'],
+  textarea {
+    font-size: 16px;
+  }
+}
+
+@layer components {
+  .dim-point {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: hsl(var(--color-primary));
+    animation: pulse-dim 1s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+
+  .text-fade-in {
+    animation: fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Input with underline only */
+  .input-underline {
+    background: none;
+    border: none;
+    border-bottom: 1px solid hsl(var(--color-text-primary) / 0.4);
+    padding: 8px 0;
+    font-size: 16px;
+    color: hsl(var(--color-text-primary));
+    transition: border-color 0.3s;
+  }
+
+  .input-underline:focus {
+    border-bottom-color: hsl(var(--color-text-primary) / 1);
+  }
+
+  /* Display font emphasis */
+  .font-display {
+    font-family: var(--font-sohne-breit), -apple-system, BlinkMacSystemFont,
+      'Segoe UI', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  /* Mono for technical UI */
+  .font-mono {
+    font-family: var(--font-jetbrains-mono), 'Menlo', monospace;
+    font-weight: 500;
+  }
+}

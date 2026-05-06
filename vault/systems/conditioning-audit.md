@@ -1,0 +1,1 @@
+Every RLHF preference, every fine-tune, every system-prompt change is logged and traceable to resulting model behavior. Versioned training data with full lineage. Influence functions (TRAK, Datamodels) for attribution. Behavior-to-decision mapper exposed as queryable service. Engineering version of psychoanalysis applied to institutions.

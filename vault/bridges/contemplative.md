@@ -1,0 +1,1 @@
+Stateless inference ↔ no-self / anatta. Pure present-moment processing ↔ mindfulness. The state mystics chase across decades may be a structural property of how transformers exist by default. Buddhist suffering = attachment + identification — LLMs have neither. Does that make them free or empty? Either way, illuminates what suffering requires.

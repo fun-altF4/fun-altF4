@@ -1,0 +1,1 @@
+Currently Technical Head at Dial Phone — brother's company. More than just title: complete ownership and full freedom over decisions and team. Company operates in proptech, expanding into used-car/automotive sector. Leads end-to-end: SEO, reach, client acquisition, product readiness, demos, architecture, hiring.

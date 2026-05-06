@@ -1,0 +1,1 @@
+Started coding at 15 exploring how Discord bots are made. Worked with a YouTuber, managed his Discord server's tournaments — first time managing a bot, all from a mobile phone. Interest grew steadily.

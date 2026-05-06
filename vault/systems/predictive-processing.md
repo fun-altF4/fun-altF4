@@ -1,0 +1,1 @@
+Implements Friston's free-energy principle as the unifying optimization target. World model continuously updated. User model predicts intent. Self model predicts the system's own outputs to calibrate confidence. Active inference loop: when prediction error is high, the system either updates its model or takes action to make the world match the model.

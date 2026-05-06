@@ -1,0 +1,1 @@
+Kubernetes (cluster setup, ingress, scaling, secrets, k3s for lighter setups), Docker (multi-stage, image optimization, non-root, healthchecks, Compose), AWS (GenAI-certified, compute, networking, IAM, storage, managed AI), Cloudflare Tunnels + Tailscale for private mesh, Linux daily-driver, shell scripting, systemd, service hardening.
