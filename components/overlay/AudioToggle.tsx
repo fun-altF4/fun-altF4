@@ -1,3 +1,8 @@
+'use client';
+
+import { Speaker2, VolumeX } from 'lucide-react';
+import useStore from '@/lib/store';
+
 /**
  * AudioToggle.tsx
  *
@@ -12,14 +17,30 @@
  * Audio continues across all tiers.
  *
  * See SECTION 2 TIER 1 (Audio Toggle)
+ *
+ * TODO: Wire to Howler instance when ambient-drone.mp3 is available
  */
 
 export default function AudioToggle() {
-  // TODO: Implement audio toggle button
-  // - Position: bottom-right, 24px from edges
-  // - Use useStore(state => state.audioEnabled) + setAudioEnabled
-  // - Wire to Howler sound instance
-  // - Lucide icons (Speaker2, VolumeX)
+  const audioEnabled = useStore((state) => state.audioEnabled);
+  const setAudioEnabled = useStore((state) => state.setAudioEnabled);
 
-  return null;
+  const handleToggle = () => {
+    setAudioEnabled(!audioEnabled);
+    // TODO: Call Howler play/pause
+  };
+
+  return (
+    <button
+      onClick={handleToggle}
+      className="fixed bottom-6 right-6 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 flex items-center justify-center"
+      aria-label="Toggle audio"
+    >
+      {audioEnabled ? (
+        <Speaker2 size={16} className="text-white" />
+      ) : (
+        <VolumeX size={16} className="text-white" />
+      )}
+    </button>
+  );
 }

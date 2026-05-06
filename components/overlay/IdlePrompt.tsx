@@ -11,11 +11,9 @@
  */
 
 export default function IdlePrompt() {
-  // TODO: Implement idle prompt
-  // - Timer: 12s on Tier 1
-  // - Condition: no scroll, no input
-  // - Fade in animation
-  // - Position: below input field, centered
-
-  return null;
+  return (
+    <p className="text-xs text-gray-500 italic text-center max-w-xs mt-6">
+      Take your time. I&apos;ll start when you&apos;re ready.
+    </p>
+  );
 }
