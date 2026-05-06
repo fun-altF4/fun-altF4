@@ -1,6 +1,6 @@
 'use client';
 
-import { Speaker2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX } from 'lucide-react';
 import useStore from '@/lib/store';
 
 /**
@@ -37,7 +37,7 @@ export default function AudioToggle() {
       aria-label="Toggle audio"
     >
       {audioEnabled ? (
-        <Speaker2 size={16} className="text-white" />
+        <Volume2 size={16} className="text-white" />
       ) : (
         <VolumeX size={16} className="text-white" />
       )}
