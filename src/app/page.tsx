@@ -1,65 +1,160 @@
-import Image from "next/image";
+import Link from "next/link";
+import AsciiDivider from "@/components/ascii-divider";
+import TerminalPrompt from "@/components/terminal-prompt";
+import HeroSection from "@/components/hero-section";
+import { site } from "@/lib/site";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <>
+      <HeroSection />
+
+      <Section title="in short" command="cat ./README.md">
+        <div className="grid gap-8 text-sm sm:grid-cols-3">
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-phosphor-dim">
+              building
+            </p>
+            <p className="mt-3 text-mute">
+              Tech head at{" "}
+              <Link
+                href="/work"
+                className="text-phosphor hover:text-phosphor-bright"
+              >
+                {site.company.name}
+              </Link>
+              . Production AI in vape, expanding into automotive. Owning the
+              full stack — infra, backend, models, ship.
+            </p>
+          </div>
+
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-phosphor-dim">
+              open source
+            </p>
+            <p className="mt-3 text-mute">
+              <a
+                href={site.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-phosphor hover:text-phosphor-bright"
+              >
+                github / {site.social.githubHandle}
+              </a>
+              <br />
+              Code, side projects, things I&apos;m hacking on in public.
+            </p>
+          </div>
+
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-phosphor-dim">
+              reading
+            </p>
+            <p className="mt-3 text-mute">
+              AI dynamics. Philosophy of mind. Systems chaos. What I&apos;m
+              actually reading right now —{" "}
+              <Link
+                href="/about"
+                className="text-phosphor hover:text-phosphor-bright"
+              >
+                more here
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section title="featured" command="ls -la ./work">
+        <ul className="divide-y divide-line">
+          <li>
+            <WorkRow
+              href="/work/dialphone"
+              slug="dialphone"
+              title="Dialphone"
+              line="Technical head + product owner. Vape → automotive. Production AI, end-to-end."
+              year="2025 →"
+            />
+          </li>
+          <li>
+            <WorkRow
+              href="/work/contextiq"
+              slug="contextiq"
+              title="ContexIQ × CitiusCloud"
+              line="Backend, K8s, deployment, integration glue across client builds."
+              year="2024–25"
+            />
+          </li>
+        </ul>
+        <p className="mt-6 text-sm text-mute">
+          <Link href="/work" className="hover:text-phosphor">
+            see all work →
+          </Link>
+        </p>
+      </Section>
+
+      <Section title="get in touch" command="echo $EMAIL">
+        <div className="space-y-4 text-sm">
+          <p className="text-mute">
+            Personal:{" "}
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href={`mailto:${site.email.personal}`}
+              className="text-phosphor hover:text-phosphor-bright"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              {site.email.personal}
+            </a>
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </Section>
+    </>
+  );
+}
+
+function Section({
+  title,
+  command,
+  children,
+}: {
+  title: string;
+  command: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="border-b border-line">
+      <div className="mx-auto max-w-5xl px-6 py-16">
+        <TerminalPrompt command={command} className="mb-3" />
+        <h2 className="mb-3 text-2xl tracking-tight text-fg">{title}</h2>
+        <AsciiDivider className="mb-8" />
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function WorkRow({
+  href,
+  slug,
+  title,
+  line,
+  year,
+}: {
+  href: string;
+  slug: string;
+  title: string;
+  line: string;
+  year: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className="group flex flex-col gap-1 py-5 transition-colors hover:bg-phosphor/5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+    >
+      <div className="flex items-baseline gap-3">
+        <span className="text-xs text-mute">./{slug}</span>
+        <span className="text-fg group-hover:text-phosphor">{title}</span>
+      </div>
+      <p className="flex-1 text-sm text-mute sm:text-right">{line}</p>
+      <span className="text-xs text-phosphor-dim">{year}</span>
+    </Link>
   );
 }

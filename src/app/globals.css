@@ -1,26 +1,182 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
+  --color-bg: #0a0a0a;
+  --color-fg: #e8e8e8;
+  --color-mute: #6b6b6b;
+  --color-line: #1f1f1f;
+  --color-phosphor: #ffb000;
+  --color-phosphor-dim: #c4881a;
+  --color-phosphor-bright: #ffc94a;
+  --font-mono: var(--font-jetbrains-mono);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
+  background: var(--color-bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-phosphor);
+  color: var(--color-bg);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border: 2px solid var(--color-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-phosphor-dim);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: "▊";
+  display: inline-block;
+  margin-left: 0.15em;
+  color: var(--color-phosphor);
+  animation: blink 1.05s step-end infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 176, 0, 0.04) 50%,
+    transparent 100%
+  );
+  animation: scan 8s linear infinite;
+  mix-blend-mode: screen;
+}
+
+/* ---------------------------------------------------------------- */
+/* View-transition: CRT-style shutdown / bootup between routes      */
+/* ---------------------------------------------------------------- */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0ms;
+}
+
+::view-transition-old(.route-exit) {
+  animation: 320ms cubic-bezier(0.4, 0, 1, 1) both crt-shutdown;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(.route-enter) {
+  animation: 460ms cubic-bezier(0, 0, 0.2, 1) 90ms both crt-bootup;
+}
+
+@keyframes crt-shutdown {
+  0% {
+    opacity: 1;
+    filter: brightness(1) blur(0) saturate(1);
+    transform: scaleY(1);
+  }
+  55% {
+    opacity: 0.65;
+    filter: brightness(1.9) blur(1.5px) saturate(1.6) hue-rotate(-6deg);
+    transform: scaleY(0.88);
+  }
+  100% {
+    opacity: 0;
+    filter: brightness(0.25) blur(10px) saturate(0);
+    transform: scaleY(0.015);
+  }
+}
+
+@keyframes crt-bootup {
+  0% {
+    opacity: 0;
+    filter: brightness(2.2) blur(8px) saturate(2);
+    transform: scaleY(0.012);
+  }
+  18% {
+    opacity: 0.4;
+    filter: brightness(2) blur(4px) saturate(1.6);
+    transform: scaleY(0.05);
+  }
+  40% {
+    opacity: 0.85;
+    filter: brightness(1.6) blur(2px) saturate(1.3);
+    transform: scaleY(1.05);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1) blur(0) saturate(1);
+    transform: scaleY(1);
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero pin scaffolding                                              */
+/* ---------------------------------------------------------------- */
+
+.hero-pin {
+  position: relative;
+  height: 180vh; /* gives 80vh of scroll while the inner section stays pinned */
+}
+
+.hero-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink::after,
+  .scanline {
+    animation: none;
+  }
+
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+
+  .hero-pin {
+    height: auto;
+  }
+  .hero-stage {
+    position: relative;
+    height: 78svh;
+  }
 }
