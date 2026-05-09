@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude tooling — bundled skills shouldn't pollute the public repo
+/.claude/skills/
+.claude/settings.local.json
